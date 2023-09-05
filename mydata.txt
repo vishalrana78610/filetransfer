@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+ServerName localhost
+DocumentRoot /home/vishalrana/moodle/public_html
+<Directory /home/vishalrana/moodle/public_html>
+Option -Indexes +FollowSymLinks +MultiViews
+AllowOverride All
+Require all granted
+</Directory>
+
+<FilesMatch \.php$>
+SetHandler "proxy:unix:/run/php/php8.1-fpm.sock|fcgi://localhost/"
+</FilesMatch>
+
+
+ErrorLog /home/vishalrana/log/error.log
+CustomLog /home/vishalrana/log/access.log
+</VirtualHost>
